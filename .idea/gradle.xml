@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app/core" />
+            <option value="$PROJECT_DIR$/app/core/data" />
+            <option value="$PROJECT_DIR$/app/core/navigation" />
+            <option value="$PROJECT_DIR$/app/core/theme" />
+            <option value="$PROJECT_DIR$/app/core/utils" />
+            <option value="$PROJECT_DIR$/app/property" />
+            <option value="$PROJECT_DIR$/app/property/common" />
+            <option value="$PROJECT_DIR$/app/property/detail" />
+            <option value="$PROJECT_DIR$/app/property/detail/data" />
+            <option value="$PROJECT_DIR$/app/property/detail/domain" />
+            <option value="$PROJECT_DIR$/app/property/detail/presentation" />
+            <option value="$PROJECT_DIR$/app/property/list" />
+            <option value="$PROJECT_DIR$/app/property/list/data" />
+            <option value="$PROJECT_DIR$/app/property/list/domain" />
+            <option value="$PROJECT_DIR$/app/property/list/presentation" />
+          </set>
+        </option>
+        <option name="resolveExternalAnnotations" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
