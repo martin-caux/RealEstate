@@ -24,8 +24,7 @@ class ListMapper {
 
         return if (propertyList.isNotEmpty()) {
             ListDomain(
-                properties = propertyList,
-                propertyCount = response.totalCount ?: propertyList.size
+                properties = propertyList, propertyCount = response.totalCount ?: propertyList.size
             )
         } else null
     }

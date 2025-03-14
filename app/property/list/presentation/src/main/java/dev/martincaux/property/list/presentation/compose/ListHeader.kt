@@ -17,19 +17,15 @@ import dev.martincaux.core.theme.spacing
 @Composable
 fun ListHeader(propertyCount: Int, modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier
-            .fillMaxWidth()
+        modifier = modifier.fillMaxWidth()
     ) {
         Text(
-            text = "Properties",
-            style = Theme.typography.titleLarge,
-            fontWeight = FontWeight.Bold
+            text = "Properties", style = Theme.typography.titleLarge, fontWeight = FontWeight.Bold
         )
-        Spacer(modifier = Modifier.height(Theme.spacing.small))
+        Spacer(modifier = Modifier.height(spacing.small))
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
-                text = "$propertyCount properties",
-                style = Theme.typography.bodyMedium
+                text = "$propertyCount properties", style = Theme.typography.bodyMedium
             )
         }
     }

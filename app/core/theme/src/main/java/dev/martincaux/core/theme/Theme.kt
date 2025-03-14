@@ -14,15 +14,11 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = Purple80, secondary = PurpleGrey80, tertiary = Pink80
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = Purple40, secondary = PurpleGrey40, tertiary = Pink40
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -36,19 +32,17 @@ private val LightColorScheme = lightColorScheme(
 )
 
 typealias Theme = MaterialTheme
+
 val LocalSpacing = compositionLocalOf { Spacing() }
 
-val Theme.spacing: Spacing
-    @Composable
-    @ReadOnlyComposable
-    get() = LocalSpacing.current
+val spacing: Spacing
+    @Composable @ReadOnlyComposable get() = LocalSpacing.current
 
 @Composable
 fun RealEstateTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
+    dynamicColor: Boolean = true, content: @Composable () -> Unit
 ) {
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
@@ -61,9 +55,7 @@ fun RealEstateTheme(
     }
     CompositionLocalProvider(LocalSpacing provides Spacing()) {
         MaterialTheme(
-            colorScheme = colorScheme,
-            typography = Typography,
-            content = content
+            colorScheme = colorScheme, typography = Typography, content = content
         )
     }
 }

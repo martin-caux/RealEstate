@@ -1,4 +1,4 @@
-package dev.martincaux.property.list.domain
+package dev.martincaux.property.list.domain.usecase
 
 import co.touchlab.kermit.Logger
 import dev.martincaux.property.list.domain.model.ListDomain

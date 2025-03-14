@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import co.touchlab.kermit.Logger
-import dev.martincaux.core.theme.Theme
 import dev.martincaux.core.theme.spacing
 import dev.martincaux.core.utils.formatArea
 import dev.martincaux.core.utils.formatPrice
@@ -22,19 +21,15 @@ fun List(
     propertyList: PropertyListUi,
     onItemClick: (Int) -> Unit,
 ) {
-    Column(verticalArrangement = Arrangement.spacedBy(Theme.spacing.medium)) {
+    Column(verticalArrangement = Arrangement.spacedBy(spacing.medium)) {
         ListHeader(
-            propertyCount = propertyList.propertyCount,
-            modifier = Modifier.fillMaxWidth()
+            propertyCount = propertyList.propertyCount, modifier = Modifier.fillMaxWidth()
         )
         LazyColumn {
             items(propertyList.properties) { item ->
-                PropertyItemCard(
-                    property = item,
-                    onClick = {
-                        onItemClick(item.id)
-                    }
-                )
+                PropertyItemCard(property = item, onClick = {
+                    onItemClick(item.id)
+                })
             }
         }
     }
@@ -59,8 +54,7 @@ fun PropertyListPreview() {
                     propertyType = "Apartment",
                     offerType = 1,
                     rooms = 5
-                ),
-                PropertyItemUi(
+                ), PropertyItemUi(
                     bedrooms = 2,
                     city = "Lyon",
                     id = 2,
@@ -74,8 +68,7 @@ fun PropertyListPreview() {
                     offerType = 2,
                     rooms = 4
                 )
-            ),
-            3
+            ), 3
         )
     ) { }
 }

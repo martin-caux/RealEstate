@@ -7,9 +7,7 @@ import dev.martincaux.property.detail.domain.model.DetailDomain
 import dev.martincaux.property.detail.domain.repository.DetailRepository
 
 class DetailRepositoryImpl(
-    private val detailApi: DetailApi,
-    private val mapper: DetailMapper,
-    logger: Logger
+    private val detailApi: DetailApi, private val mapper: DetailMapper, logger: Logger
 ) : DetailRepository {
 
     private val log = logger.withTag("DetailRepositoryImpl")

@@ -7,9 +7,7 @@ import dev.martincaux.property.list.domain.model.ListDomain
 import dev.martincaux.property.list.domain.repository.ListRepository
 
 class ListRepositoryImpl(
-    private val listApi: ListApi,
-    private val mapper: ListMapper,
-    logger: Logger
+    private val listApi: ListApi, private val mapper: ListMapper, logger: Logger
 ) : ListRepository {
 
     private val log = logger.withTag("ListRepositoryImpl")

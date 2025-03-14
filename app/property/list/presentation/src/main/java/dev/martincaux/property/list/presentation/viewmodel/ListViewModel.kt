@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.touchlab.kermit.Logger
 import dev.martincaux.core.navigation.Route
-import dev.martincaux.property.list.domain.GetListUseCase
+import dev.martincaux.property.list.domain.usecase.GetListUseCase
 import dev.martincaux.property.list.presentation.mapper.toUi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

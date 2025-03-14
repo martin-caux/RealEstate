@@ -4,18 +4,17 @@ import co.touchlab.kermit.Logger
 import dev.martincaux.property.common.uimodel.PropertyItemUi
 import dev.martincaux.property.detail.domain.model.DetailDomain
 
-fun DetailDomain.toUi(): PropertyItemUi =
-    PropertyItemUi(
-        id = id,
-        city = city,
-        area = area,
-        formattedArea = dev.martincaux.core.utils.formatArea(area, Logger),
-        price = price,
-        formattedPrice = dev.martincaux.core.utils.formatPrice(price, Logger),
-        professional = professional,
-        propertyType = propertyType,
-        offerType = offerType,
-        rooms = rooms,
-        imageUrl = imageUrl,
-        bedrooms = bedrooms
-    )
+fun DetailDomain.toUi(): PropertyItemUi = PropertyItemUi(
+    id = id,
+    city = city,
+    area = area,
+    formattedArea = dev.martincaux.core.utils.formatArea(area, Logger),
+    price = price,
+    formattedPrice = dev.martincaux.core.utils.formatPrice(price, Logger),
+    professional = professional,
+    propertyType = propertyType,
+    offerType = offerType,
+    rooms = rooms,
+    imageUrl = imageUrl,
+    bedrooms = bedrooms
+)

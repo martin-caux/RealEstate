@@ -32,8 +32,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     val navController = rememberNavController()
                     Navigation(
-                        navController = navController,
-                        modifier = Modifier.padding(innerPadding)
+                        navController = navController, modifier = Modifier.padding(innerPadding)
                     )
                     navController.handleDeepLink(intent)
                 }
@@ -49,13 +48,10 @@ fun Navigation(navController: NavHostController, modifier: Modifier) {
             val viewModel = koinViewModel<ListViewModel>()
             ListScreen(modifier = modifier, viewModel = viewModel, navController = navController)
         }
-        composable(
-            route = Route.RealEstateDetail.route,
-            arguments = listOf(
-                androidx.navigation.navArgument("itemId") {
-                    type = androidx.navigation.NavType.IntType
-                }
-            ),
+        composable(route = Route.RealEstateDetail.route,
+            arguments = listOf(androidx.navigation.navArgument("itemId") {
+                type = androidx.navigation.NavType.IntType
+            }),
             deepLinks = listOf(navDeepLink { uriPattern = "realestate://listings/detail/{itemId}" })
         ) { backStackEntry ->
             val itemId = backStackEntry.arguments?.getInt("itemId") ?: 0

@@ -44,12 +44,9 @@ fun ListScreen(modifier: Modifier, viewModel: ListViewModel, navController: NavC
             is ListViewState.Success -> {
                 val successViewState = viewState as ListViewState.Success
                 val propertyList = successViewState.propertyList
-                List(
-                    propertyList = propertyList,
-                    onItemClick = { itemId ->
-                        viewModel.onIntent(ListIntent.OnListClicked(itemId))
-                    }
-                )
+                List(propertyList = propertyList, onItemClick = { itemId ->
+                    viewModel.onIntent(ListIntent.OnListClicked(itemId))
+                })
             }
 
             is ListViewState.Error -> {
