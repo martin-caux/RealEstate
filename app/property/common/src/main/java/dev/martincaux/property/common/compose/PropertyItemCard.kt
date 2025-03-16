@@ -12,11 +12,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -25,7 +25,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Logger
 import coil.compose.AsyncImage
+import dev.martincaux.core.theme.RealEstateTheme
 import dev.martincaux.core.theme.Theme
+import dev.martincaux.core.theme.spacing
 import dev.martincaux.core.utils.formatArea
 import dev.martincaux.core.utils.formatPrice
 import dev.martincaux.property.common.R
@@ -36,13 +38,14 @@ fun PropertyItemCard(property: PropertyItemUi, onClick: () -> Unit = {}) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(spacing.medium)
             .clickable {
                 onClick()
             },
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(spacing.large)) {
             AsyncImage(
                 model = property.imageUrl,
                 contentDescription = "Image of the property",
@@ -53,7 +56,7 @@ fun PropertyItemCard(property: PropertyItemUi, onClick: () -> Unit = {}) {
                 placeholder = painterResource(id = R.drawable.property_background_placeholder),
                 error = painterResource(id = R.drawable.property_background_placeholder)
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(spacing.medium))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 property.bedrooms?.let { bedrooms ->
                     Image(
@@ -61,10 +64,11 @@ fun PropertyItemCard(property: PropertyItemUi, onClick: () -> Unit = {}) {
                         contentDescription = "Bedrooms",
                         modifier = Modifier.size(24.dp)
                     )
-                    Spacer(modifier = Modifier.width(4.dp))
+                    Spacer(modifier = Modifier.width(spacing.small))
                     Text(
                         text = "$bedrooms bedrooms",
-                        style = Theme.typography.bodyMedium
+                        style = Theme.typography.bodyMedium,
+                        color = Theme.colorScheme.onTertiaryContainer
                     )
                     property.rooms?.let { Spacer(modifier = Modifier.width(16.dp)) }
                 }
@@ -74,46 +78,56 @@ fun PropertyItemCard(property: PropertyItemUi, onClick: () -> Unit = {}) {
                         contentDescription = "Rooms",
                         modifier = Modifier.size(24.dp)
                     )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text(text = "$rooms rooms", style = Theme.typography.bodyMedium)
+                    Spacer(modifier = Modifier.width(spacing.small))
+                    Text(
+                        text = "$rooms rooms",
+                        style = Theme.typography.bodyMedium,
+                        color = Theme.colorScheme.onTertiaryContainer
+                    )
                 }
 
             }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(spacing.medium))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_area_24),
                     contentDescription = "Area",
                     modifier = Modifier.size(24.dp)
                 )
-                Spacer(modifier = Modifier.width(4.dp))
-                Text(text = property.formattedArea, style = Theme.typography.bodyMedium)
+                Spacer(modifier = Modifier.width(spacing.small))
+                Text(
+                    text = property.formattedArea,
+                    style = Theme.typography.bodyMedium,
+                    color = Theme.colorScheme.onTertiaryContainer
+                )
             }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(spacing.medium))
             Text(
                 text = property.city,
                 style = Theme.typography.titleMedium,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = Theme.colorScheme.onTertiaryContainer
             )
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(spacing.small))
             Text(
                 text = property.formattedPrice,
                 style = Theme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.End,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                color = Theme.colorScheme.onTertiaryContainer
             )
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(spacing.small))
             Text(
                 text = property.propertyType,
                 style = Theme.typography.bodySmall,
-                color = Color.Gray
+                color = Theme.colorScheme.tertiary
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = property.professional,
                 style = Theme.typography.bodySmall,
-                color = Color.Gray
+                color = Theme.colorScheme.tertiary
             )
         }
     }
@@ -136,5 +150,7 @@ fun ListingItemCardPreview() {
         offerType = 1,
         rooms = 5
     )
-    PropertyItemCard(property = listing)
+    RealEstateTheme {
+        PropertyItemCard(property = listing)
+    }
 }

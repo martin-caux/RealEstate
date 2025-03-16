@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "dev.martincaux.listing.detail.presentation"
+    namespace = "dev.martincaux.core.components"
     compileSdk = 35
 
     defaultConfig {
@@ -44,30 +44,15 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.material3.android)
+    implementation(libs.androidx.ui.tooling.preview.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.material.icons.core.android)
 
-    implementation(libs.kotlinx.serialization.json)
-
-    implementation(libs.koin.android)
-
-    implementation(libs.kermit)
-
-    implementation(libs.coil.compose)
-
-    implementation(project(":app:property:detail:domain"))
-    implementation(project(":app:property:common"))
-    implementation(project(":app:core:navigation"))
-    implementation(project(":app:core:utils"))
-    implementation(project(":app:core:components"))
+    implementation(project(":app:core:theme"))
+    debugImplementation(libs.ui.tooling)
 }

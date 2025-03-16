@@ -4,9 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -29,26 +26,25 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             RealEstateTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    val navController = rememberNavController()
-                    Navigation(
-                        navController = navController, modifier = Modifier.padding(innerPadding)
-                    )
-                    navController.handleDeepLink(intent)
-                }
+                val navController = rememberNavController()
+                Navigation(navController = navController)
+                navController.handleDeepLink(intent)
             }
         }
     }
 }
 
 @Composable
-fun Navigation(navController: NavHostController, modifier: Modifier) {
+fun Navigation(navController: NavHostController, modifier: Modifier = Modifier) {
     NavHost(navController = navController, startDestination = Route.RealEstateList.route) {
         composable(Route.RealEstateList.route) {
             val viewModel = koinViewModel<ListViewModel>()
-            ListScreen(modifier = modifier, viewModel = viewModel, navController = navController)
+            ListScreen(modifier = modifier, viewModel = viewModel) { route ->
+                navController.navigate(route)
+            }
         }
-        composable(route = Route.RealEstateDetail.route,
+        composable(
+            route = Route.RealEstateDetail.route,
             arguments = listOf(androidx.navigation.navArgument("itemId") {
                 type = androidx.navigation.NavType.IntType
             }),
@@ -56,7 +52,9 @@ fun Navigation(navController: NavHostController, modifier: Modifier) {
         ) { backStackEntry ->
             val itemId = backStackEntry.arguments?.getInt("itemId") ?: 0
             val viewModel: DetailViewModel = koinViewModel<DetailViewModel> { parametersOf(itemId) }
-            DetailScreen(modifier = modifier, viewModel = viewModel)
+            DetailScreen(modifier = modifier, viewModel = viewModel) {
+                navController.navigateUp()
+            }
         }
     }
 }

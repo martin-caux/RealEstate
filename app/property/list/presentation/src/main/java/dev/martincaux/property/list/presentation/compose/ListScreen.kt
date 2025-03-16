@@ -1,10 +1,10 @@
 package dev.martincaux.property.list.presentation.compose
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -13,30 +13,32 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import dev.martincaux.core.components.TopNavigationBar
 import dev.martincaux.property.list.presentation.viewmodel.ListIntent
 import dev.martincaux.property.list.presentation.viewmodel.ListViewModel
 import dev.martincaux.property.list.presentation.viewmodel.ListViewState
 
 @Composable
-fun ListScreen(modifier: Modifier, viewModel: ListViewModel, navController: NavController) {
+fun ListScreen(modifier: Modifier, viewModel: ListViewModel, onItemClick: (String) -> Unit) {
 
     val viewState by viewModel.viewState.collectAsState()
 
     LaunchedEffect(true) {
         viewModel.navigationEvent.collect { routeUri ->
-            navController.navigate(routeUri)
+            onItemClick(routeUri)
         }
     }
-
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
+    Scaffold(
+        modifier = modifier.fillMaxSize(),
+        topBar = { TopNavigationBar(title = "Properties") }) { innerPadding ->
         when (viewState) {
             is ListViewState.Loading -> {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding),
+                    contentAlignment = Alignment.Center
+                ) {
                     CircularProgressIndicator()
                 }
             }
@@ -46,7 +48,7 @@ fun ListScreen(modifier: Modifier, viewModel: ListViewModel, navController: NavC
                 val propertyList = successViewState.propertyList
                 List(propertyList = propertyList, onItemClick = { itemId ->
                     viewModel.onIntent(ListIntent.OnListClicked(itemId))
-                })
+                }, modifier = modifier.padding(innerPadding))
             }
 
             is ListViewState.Error -> {

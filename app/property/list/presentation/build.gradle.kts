@@ -67,8 +67,10 @@ dependencies {
 
     implementation(libs.coil.compose)
 
+    debugImplementation(libs.ui.tooling)
+
     implementation(project(":app:property:list:domain"))
     implementation(project(":app:property:common"))
     implementation(project(":app:core:navigation"))
-    debugImplementation(libs.ui.tooling)
+    implementation(project(":app:core:components"))
 }

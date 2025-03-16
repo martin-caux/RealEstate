@@ -4,7 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -34,8 +34,6 @@ import dev.martincaux.property.common.uimodel.PropertyItemUi
 fun PropertyCard(property: PropertyItemUi) {
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(spacing.large)
             .verticalScroll(rememberScrollState())
     ) {
         AsyncImage(
@@ -45,67 +43,66 @@ fun PropertyCard(property: PropertyItemUi) {
             contentScale = ContentScale.Crop,
             placeholder = painterResource(id = R.drawable.property_background_placeholder),
             error = painterResource(id = R.drawable.property_background_placeholder),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp)
+            modifier = Modifier.fillMaxWidth().aspectRatio(4/3f)
         )
-        Spacer(modifier = Modifier.height(spacing.large))
-        Text(
-            text = property.city,
-            style = Theme.typography.headlineMedium,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(modifier = Modifier.height(spacing.medium))
-        Text(
-            text = property.formattedPrice,
-            style = Theme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(modifier = Modifier.height(spacing.medium))
+        Column(modifier = Modifier.padding(spacing.large)) {
+            Text(
+                text = property.city,
+                style = Theme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(modifier = Modifier.height(spacing.medium))
+            Text(
+                text = property.formattedPrice,
+                style = Theme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(modifier = Modifier.height(spacing.medium))
 
-        anyNotNull(property.bedrooms, property.rooms) { bedrooms, rooms ->
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                bedrooms?.let {
-                    Image(
-                        painter = painterResource(id = R.drawable.baseline_bed_24),
-                        contentDescription = "Bedrooms",
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Spacer(modifier = Modifier.width(spacing.small))
-                    Text(text = "${property.bedrooms} bedrooms")
-                    property.rooms?.let {
-                        Spacer(modifier = Modifier.width(spacing.large))
+            anyNotNull(property.bedrooms, property.rooms) { bedrooms, rooms ->
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    bedrooms?.let {
+                        Image(
+                            painter = painterResource(id = R.drawable.baseline_bed_24),
+                            contentDescription = "Bedrooms",
+                            modifier = Modifier.size(24.dp)
+                        )
+                        Spacer(modifier = Modifier.width(spacing.small))
+                        Text(text = "${property.bedrooms} bedrooms")
+                        property.rooms?.let {
+                            Spacer(modifier = Modifier.width(spacing.large))
+                        }
+                    }
+                    rooms?.let {
+                        Image(
+                            painter = painterResource(id = R.drawable.baseline_room_24),
+                            contentDescription = "Rooms",
+                            modifier = Modifier.size(24.dp)
+                        )
+                        Spacer(modifier = Modifier.width(spacing.small))
+                        Text(text = "${property.rooms} rooms")
                     }
                 }
-                rooms?.let {
-                    Image(
-                        painter = painterResource(id = R.drawable.baseline_room_24),
-                        contentDescription = "Rooms",
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Spacer(modifier = Modifier.width(spacing.small))
-                    Text(text = "${property.rooms} rooms")
-                }
+                Spacer(modifier = Modifier.height(spacing.medium))
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    painter = painterResource(id = R.drawable.baseline_area_24),
+                    contentDescription = "Area",
+                    modifier = Modifier.size(24.dp)
+                )
+                Spacer(modifier = Modifier.width(spacing.small))
+                Text(text = property.formattedArea)
             }
             Spacer(modifier = Modifier.height(spacing.medium))
-        }
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Image(
-                painter = painterResource(id = R.drawable.baseline_area_24),
-                contentDescription = "Area",
-                modifier = Modifier.size(24.dp)
+            Text(
+                text = property.professional, style = Theme.typography.bodyMedium
             )
-            Spacer(modifier = Modifier.width(spacing.small))
-            Text(text = property.formattedArea)
+            Spacer(modifier = Modifier.height(spacing.medium))
+            Text(
+                text = property.propertyType, style = Theme.typography.bodyMedium
+            )
         }
-        Spacer(modifier = Modifier.height(spacing.medium))
-        Text(
-            text = property.professional, style = Theme.typography.bodyMedium
-        )
-        Spacer(modifier = Modifier.height(spacing.medium))
-        Text(
-            text = property.propertyType, style = Theme.typography.bodyMedium
-        )
     }
 }
 

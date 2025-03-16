@@ -2,7 +2,6 @@ package dev.martincaux.property.list.presentation.compose
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -19,11 +18,12 @@ import dev.martincaux.property.list.presentation.uimodel.PropertyListUi
 @Composable
 fun List(
     propertyList: PropertyListUi,
-    onItemClick: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+    onItemClick: (Int) -> Unit
 ) {
-    Column(verticalArrangement = Arrangement.spacedBy(spacing.medium)) {
+    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(spacing.medium)) {
         ListHeader(
-            propertyCount = propertyList.propertyCount, modifier = Modifier.fillMaxWidth()
+            propertyCount = propertyList.propertyCount
         )
         LazyColumn {
             items(propertyList.properties) { item ->
