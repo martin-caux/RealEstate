@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import dev.martincaux.core.theme.RealEstateTheme
 import dev.martincaux.core.theme.Theme
 import dev.martincaux.core.theme.spacing
 import dev.martincaux.core.utils.anyNotNull
@@ -109,20 +110,22 @@ fun PropertyCard(property: PropertyItemUi) {
 @Preview(showBackground = true)
 @Composable
 fun DetailItemCardPreview() {
-    PropertyCard(
-        property = PropertyItemUi(
-            bedrooms = 3,
-            city = "Paris",
-            id = 1,
-            area = 100.00,
-            formattedArea = "100 m²",
-            imageUrl = "https://i.pinimg.com/originals/70/0a/5a/700a5a78999941b8081a231144309350.jpg",
-            price = 500000.00,
-            formattedPrice = "500,000 €",
-            professional = "Real Estate Agency",
-            propertyType = "Apartment",
-            offerType = 2,
-            rooms = 5
+    RealEstateTheme {
+        PropertyCard(
+            property = PropertyItemUi(
+                bedrooms = 3,
+                city = "Paris",
+                id = 1,
+                area = 100.00,
+                formattedArea = "100 m²",
+                imageUrl = "https://i.pinimg.com/originals/70/0a/5a/700a5a78999941b8081a231144309350.jpg",
+                price = 500000.00,
+                formattedPrice = "500,000 €",
+                professional = "Real Estate Agency",
+                propertyType = "Apartment",
+                offerType = 2,
+                rooms = 5
+            )
         )
-    )
+    }
 }

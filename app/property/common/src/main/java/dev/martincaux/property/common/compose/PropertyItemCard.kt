@@ -38,7 +38,10 @@ fun PropertyItemCard(property: PropertyItemUi, onClick: () -> Unit = {}) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(spacing.medium)
+            .padding(
+                horizontal = spacing.large,
+                vertical = spacing.medium
+            )
             .clickable {
                 onClick()
             },

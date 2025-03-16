@@ -33,14 +33,7 @@ fun ListScreen(modifier: Modifier, viewModel: ListViewModel, onItemClick: (Strin
         topBar = { TopNavigationBar(title = "Properties") }) { innerPadding ->
         when (viewState) {
             is ListViewState.Loading -> {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator()
-                }
+                List(isLoading = true, modifier = modifier.padding(innerPadding)) { }
             }
 
             is ListViewState.Success -> {

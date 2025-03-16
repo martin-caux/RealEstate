@@ -6,13 +6,14 @@ import co.touchlab.kermit.Logger
 import dev.martincaux.core.navigation.Route
 import dev.martincaux.property.list.domain.usecase.GetListUseCase
 import dev.martincaux.property.list.presentation.mapper.toUi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class ListViewModel(logger: Logger, private val getCategory: GetListUseCase) : ViewModel() {
+class ListViewModel(logger: Logger, private val getList: GetListUseCase) : ViewModel() {
 
     private val log = logger.withTag("ListViewModel")
 
@@ -25,7 +26,8 @@ class ListViewModel(logger: Logger, private val getCategory: GetListUseCase) : V
     init {
         viewModelScope.launch {
             _viewState.value = ListViewState.Loading
-            getCategory().onSuccess { properties ->
+            delay(1000)
+            getList().onSuccess { properties ->
                 _viewState.value = ListViewState.Success(properties.toUi())
             }.onFailure { exception ->
                 _viewState.value = ListViewState.Error("Failure fetching list")
