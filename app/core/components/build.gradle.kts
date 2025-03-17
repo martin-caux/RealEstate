@@ -54,5 +54,6 @@ dependencies {
     implementation(libs.androidx.material.icons.core.android)
 
     implementation(project(":app:core:theme"))
+    implementation(project(":app:core:values"))
     debugImplementation(libs.ui.tooling)
 }

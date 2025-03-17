@@ -1,11 +1,14 @@
 package dev.martincaux.property.list.presentation.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.touchlab.kermit.Logger
 import dev.martincaux.core.navigation.Route
+import dev.martincaux.property.list.domain.model.ListDomain
 import dev.martincaux.property.list.domain.usecase.GetListUseCase
 import dev.martincaux.property.list.presentation.mapper.toUi
+import dev.martincaux.property.list.presentation.uimodel.PropertyListUi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,7 +31,7 @@ class ListViewModel(logger: Logger, private val getList: GetListUseCase) : ViewM
             _viewState.value = ListViewState.Loading
             delay(1000)
             getList().onSuccess { properties ->
-                _viewState.value = ListViewState.Success(properties.toUi())
+                _viewState.value = ListViewState.Success(properties)
             }.onFailure { exception ->
                 _viewState.value = ListViewState.Error("Failure fetching list")
                 log.d { "Failure fetching list : $exception" }
@@ -46,5 +49,8 @@ class ListViewModel(logger: Logger, private val getList: GetListUseCase) : ViewM
             }
         }
     }
+
+    fun propertyListToUi(listDomain: ListDomain, context: Context): PropertyListUi =
+        listDomain.toUi(context)
 }
 

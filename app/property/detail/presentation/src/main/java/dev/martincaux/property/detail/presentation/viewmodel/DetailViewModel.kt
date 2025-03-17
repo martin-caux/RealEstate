@@ -1,8 +1,11 @@
 package dev.martincaux.property.detail.presentation.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.touchlab.kermit.Logger
+import dev.martincaux.property.common.uimodel.PropertyItemUi
+import dev.martincaux.property.detail.domain.model.DetailDomain
 import dev.martincaux.property.detail.domain.usecase.GetDetailUseCase
 import dev.martincaux.property.detail.presentation.mapper.toUi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,12 +25,15 @@ class DetailViewModel(
         viewModelScope.launch {
             _viewState.value = DetailViewState.Loading
             getDetail(itemId = itemId).onSuccess { detail ->
-                _viewState.value = DetailViewState.Success(detail.toUi())
+                _viewState.value = DetailViewState.Success(detail)
             }.onFailure { exception ->
                 _viewState.value = DetailViewState.Error("Failure fetching detail")
                 log.d { "Failure fetching detail : $exception" }
             }
         }
     }
+
+    fun propertyDetailToUi(detailDomain: DetailDomain, context: Context): PropertyItemUi =
+        detailDomain.toUi(context)
 }
 

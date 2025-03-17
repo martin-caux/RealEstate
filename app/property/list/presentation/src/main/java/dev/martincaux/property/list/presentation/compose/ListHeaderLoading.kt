@@ -15,7 +15,7 @@ import dev.martincaux.core.components.shimmerBrush
 import dev.martincaux.core.theme.spacing
 
 @Composable
-fun LoadingListHeader(modifier: Modifier = Modifier) {
+fun ListHeaderLoading(modifier: Modifier = Modifier) {
     Spacer(
         modifier = modifier
             .fillMaxWidth(0.4f)
@@ -29,5 +29,5 @@ fun LoadingListHeader(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun PropertyListLoadingHeaderPreview() {
-    LoadingListHeader()
+    ListHeaderLoading()
 }

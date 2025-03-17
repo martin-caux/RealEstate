@@ -18,7 +18,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,10 +30,12 @@ import coil.compose.AsyncImage
 import dev.martincaux.core.theme.RealEstateTheme
 import dev.martincaux.core.theme.Theme
 import dev.martincaux.core.theme.spacing
+import dev.martincaux.core.utils.anyNotNull
 import dev.martincaux.core.utils.formatArea
 import dev.martincaux.core.utils.formatPrice
 import dev.martincaux.property.common.R
 import dev.martincaux.property.common.uimodel.PropertyItemUi
+import dev.martincaux.core.values.R as CoreValuesR
 
 @Composable
 fun PropertyItemCard(property: PropertyItemUi, onClick: () -> Unit = {}) {
@@ -46,12 +50,12 @@ fun PropertyItemCard(property: PropertyItemUi, onClick: () -> Unit = {}) {
                 onClick()
             },
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
+        colors = CardDefaults.cardColors(containerColor = Theme.colorScheme.tertiaryContainer)
     ) {
         Column(modifier = Modifier.padding(spacing.large)) {
             AsyncImage(
                 model = property.imageUrl,
-                contentDescription = "Image of the property",
+                contentDescription = stringResource(CoreValuesR.string.image_description),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(180.dp),
@@ -60,41 +64,43 @@ fun PropertyItemCard(property: PropertyItemUi, onClick: () -> Unit = {}) {
                 error = painterResource(id = R.drawable.property_background_placeholder)
             )
             Spacer(modifier = Modifier.height(spacing.medium))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                property.bedrooms?.let { bedrooms ->
-                    Image(
-                        painter = painterResource(id = R.drawable.baseline_bed_24),
-                        contentDescription = "Bedrooms",
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Spacer(modifier = Modifier.width(spacing.small))
-                    Text(
-                        text = "$bedrooms bedrooms",
-                        style = Theme.typography.bodyMedium,
-                        color = Theme.colorScheme.onTertiaryContainer
-                    )
-                    property.rooms?.let { Spacer(modifier = Modifier.width(16.dp)) }
-                }
-                property.rooms?.let { rooms ->
-                    Image(
-                        painter = painterResource(id = R.drawable.baseline_room_24),
-                        contentDescription = "Rooms",
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Spacer(modifier = Modifier.width(spacing.small))
-                    Text(
-                        text = "$rooms rooms",
-                        style = Theme.typography.bodyMedium,
-                        color = Theme.colorScheme.onTertiaryContainer
-                    )
-                }
+            anyNotNull(property.bedrooms, property.rooms) { bedrooms, rooms ->
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    bedrooms?.let { bedroomsValue ->
+                        Image(
+                            painter = painterResource(id = R.drawable.baseline_bed_24),
+                            contentDescription = stringResource(CoreValuesR.string.bedrooms_description),
+                            modifier = Modifier.size(24.dp)
+                        )
+                        Spacer(modifier = Modifier.width(spacing.small))
+                        Text(
+                            text = stringResource(CoreValuesR.string.bedrooms_value, bedroomsValue),
+                            style = Theme.typography.bodyMedium,
+                            color = Theme.colorScheme.onTertiaryContainer
+                        )
+                        property.rooms?.let { Spacer(modifier = Modifier.width(16.dp)) }
+                    }
+                    rooms?.let { roomsValue ->
+                        Image(
+                            painter = painterResource(id = R.drawable.baseline_room_24),
+                            contentDescription = stringResource(CoreValuesR.string.rooms_description),
+                            modifier = Modifier.size(24.dp)
+                        )
+                        Spacer(modifier = Modifier.width(spacing.small))
+                        Text(
+                            text = stringResource(CoreValuesR.string.rooms_value, roomsValue),
+                            style = Theme.typography.bodyMedium,
+                            color = Theme.colorScheme.onTertiaryContainer
+                        )
+                    }
 
+                }
             }
             Spacer(modifier = Modifier.height(spacing.medium))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_area_24),
-                    contentDescription = "Area",
+                    contentDescription = stringResource(CoreValuesR.string.area_description),
                     modifier = Modifier.size(24.dp)
                 )
                 Spacer(modifier = Modifier.width(spacing.small))
@@ -144,7 +150,7 @@ fun ListingItemCardPreview() {
         city = "Paris",
         id = 1,
         area = 100.00,
-        formattedArea = formatArea(100.00, logger = Logger),
+        formattedArea = formatArea(100.00, logger = Logger, LocalContext.current),
         imageUrl = "https://i.pinimg.com/originals/70/0a/5a/700a5a78999941b8081a231144309350.jpg",
         price = 500000.00,
         formattedPrice = formatPrice(500000.00, logger = Logger),

@@ -73,4 +73,5 @@ dependencies {
     implementation(project(":app:property:common"))
     implementation(project(":app:core:navigation"))
     implementation(project(":app:core:components"))
+    implementation(project(":app:core:values"))
 }

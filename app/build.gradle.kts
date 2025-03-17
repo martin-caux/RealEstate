@@ -84,4 +84,5 @@ dependencies {
     implementation(project(":app:property:detail:data"))
     implementation(project(":app:property:detail:presentation"))
     implementation(project(":app:core:data"))
+    implementation(project(":app:core:values"))
 }

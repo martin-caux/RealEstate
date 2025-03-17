@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "dev.martincaux.core.utils"
+    namespace = "dev.martincaux.core.values"
     compileSdk = 35
 
     defaultConfig {
@@ -40,10 +40,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    implementation(libs.koin.android)
-
-    implementation(libs.kermit)
-
-    implementation(project(":app:core:values"))
 }

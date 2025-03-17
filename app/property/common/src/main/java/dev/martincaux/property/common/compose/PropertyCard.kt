@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -29,6 +30,7 @@ import dev.martincaux.core.theme.Theme
 import dev.martincaux.core.theme.spacing
 import dev.martincaux.core.utils.anyNotNull
 import dev.martincaux.property.common.R
+import dev.martincaux.core.values.R as CoreValuesR
 import dev.martincaux.property.common.uimodel.PropertyItemUi
 
 @Composable
@@ -40,11 +42,13 @@ fun PropertyCard(property: PropertyItemUi) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current).data(property.imageUrl)
                 .crossfade(true).build(),
-            contentDescription = "Property Image",
+            contentDescription = stringResource(CoreValuesR.string.image_description),
             contentScale = ContentScale.Crop,
             placeholder = painterResource(id = R.drawable.property_background_placeholder),
             error = painterResource(id = R.drawable.property_background_placeholder),
-            modifier = Modifier.fillMaxWidth().aspectRatio(4/3f)
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(4 / 3f)
         )
         Column(modifier = Modifier.padding(spacing.large)) {
             Text(
@@ -62,26 +66,26 @@ fun PropertyCard(property: PropertyItemUi) {
 
             anyNotNull(property.bedrooms, property.rooms) { bedrooms, rooms ->
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    bedrooms?.let {
+                    bedrooms?.let { bedroomsValue ->
                         Image(
                             painter = painterResource(id = R.drawable.baseline_bed_24),
-                            contentDescription = "Bedrooms",
+                            contentDescription = stringResource(CoreValuesR.string.bedrooms_description),
                             modifier = Modifier.size(24.dp)
                         )
                         Spacer(modifier = Modifier.width(spacing.small))
-                        Text(text = "${property.bedrooms} bedrooms")
+                        Text(text = stringResource(CoreValuesR.string.bedrooms_value, bedroomsValue))
                         property.rooms?.let {
                             Spacer(modifier = Modifier.width(spacing.large))
                         }
                     }
-                    rooms?.let {
+                    rooms?.let { roomsValue ->
                         Image(
                             painter = painterResource(id = R.drawable.baseline_room_24),
-                            contentDescription = "Rooms",
+                            contentDescription = stringResource(CoreValuesR.string.rooms_description),
                             modifier = Modifier.size(24.dp)
                         )
                         Spacer(modifier = Modifier.width(spacing.small))
-                        Text(text = "${property.rooms} rooms")
+                        Text(text = stringResource(CoreValuesR.string.rooms_value, roomsValue))
                     }
                 }
                 Spacer(modifier = Modifier.height(spacing.medium))
@@ -89,7 +93,7 @@ fun PropertyCard(property: PropertyItemUi) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image(
                     painter = painterResource(id = R.drawable.baseline_area_24),
-                    contentDescription = "Area",
+                    contentDescription = stringResource(CoreValuesR.string.area_description),
                     modifier = Modifier.size(24.dp)
                 )
                 Spacer(modifier = Modifier.width(spacing.small))

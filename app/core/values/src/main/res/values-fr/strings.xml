@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="list_screen_title">Propriétés</string>
+    <string name="bedrooms_value">%1$s chambres</string>
+    <string name="rooms_value">%1$s pièces</string>
+    <string name="property_count_value">%1$s propriétés</string>
+    <string name="rooms_description">Pièces</string>
+    <string name="bedrooms_description">Chambres</string>
+    <string name="back_description">Retour</string>
+    <string name="image_description">Image de la propriété</string>
+    <string name="area_description">Surface</string>
+</resources>

@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/app/core/navigation" />
             <option value="$PROJECT_DIR$/app/core/theme" />
             <option value="$PROJECT_DIR$/app/core/utils" />
+            <option value="$PROJECT_DIR$/app/core/values" />
             <option value="$PROJECT_DIR$/app/property" />
             <option value="$PROJECT_DIR$/app/property/common" />
             <option value="$PROJECT_DIR$/app/property/detail" />

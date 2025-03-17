@@ -11,6 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import dev.martincaux.core.components.TopNavigationBar
 import dev.martincaux.property.common.compose.PropertyCard
@@ -39,13 +40,18 @@ fun DetailScreen(modifier: Modifier, viewModel: DetailViewModel, onNavigateUp: (
 
             is DetailViewState.Success -> {
                 val successViewState = viewState as DetailViewState.Success
-                PropertyCard(successViewState.property)
+                PropertyCard(
+                    property = viewModel.propertyDetailToUi(
+                        detailDomain = successViewState.property,
+                        context = LocalContext.current
+                    )
+                )
             }
 
             is DetailViewState.Error -> {
                 val errorMessage = (viewState as DetailViewState.Error).message
                 // Display the error message here
-                Text(text = "Error: $errorMessage", modifier = Modifier.padding(16.dp))
+                Text(text = errorMessage, modifier = Modifier.padding(16.dp))
             }
         }
     }

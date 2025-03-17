@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Real Estate</string>
+    <string name="list_screen_title">Properties</string>
+    <string name="bedrooms_value">%1$s bedrooms</string>
+    <string name="rooms_value">%1$s rooms</string>
+    <string name="property_count_value">%1$s properties</string>
+    <string name="rooms_description">Rooms</string>
+    <string name="bedrooms_description">Bedrooms</string>
+    <string name="image_description">Property Image</string>
+    <string name="area_description">Area</string>
+    <string name="shimmer_transition" translatable="false">ShimmerTransition</string>
+    <string name="back_description">Back</string>
+    <string name="squared_meters_unit" translatable="false">m²</string>
+    <string name="squared_feet_unit" translatable="false">sq ft</string>
+</resources>

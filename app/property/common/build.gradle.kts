@@ -58,5 +58,6 @@ dependencies {
 
     implementation(project(":app:core:utils"))
     implementation(project(":app:core:theme"))
+    implementation(project(":app:core:values"))
     debugImplementation(libs.ui.tooling)
 }
