@@ -2,10 +2,13 @@ package dev.martincaux.property.list.presentation.compose
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import co.touchlab.kermit.Logger
@@ -25,12 +28,20 @@ fun List(
     isLoading: Boolean = false,
     onItemClick: (Int) -> Unit
 ) {
+    val listState = rememberLazyListState()
+    val shouldShowShadow by remember {
+        derivedStateOf {
+            listState.firstVisibleItemIndex > 0 || listState.firstVisibleItemScrollOffset > 0
+        }
+    }
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(spacing.medium)) {
         if (isLoading) LoadingListHeader()
         else propertyList?.propertyCount?.let { propertyCount ->
-            ListHeader(propertyCount = propertyCount)
+            ListHeader(propertyCount = propertyCount, showShadow = shouldShowShadow)
         }
-        LazyColumn {
+        LazyColumn(
+            state = listState
+        ) {
             if (isLoading) {
                 items(5) {
                     LoadingPropertyCard()
