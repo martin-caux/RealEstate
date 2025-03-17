@@ -1,10 +1,10 @@
 package dev.martincaux.property.detail.presentation.mapper
 
 import co.touchlab.kermit.Logger
-import dev.martincaux.property.common.uimodel.PropertyItemUi
+import dev.martincaux.property.common.uimodel.PropertyDetailUi
 import dev.martincaux.property.detail.domain.model.DetailDomain
 
-fun DetailDomain.toUi(): PropertyItemUi = PropertyItemUi(
+fun DetailDomain.toUi(): PropertyDetailUi = PropertyDetailUi(
     id = id,
     city = city,
     area = area,

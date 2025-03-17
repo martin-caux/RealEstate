@@ -30,11 +30,12 @@ import dev.martincaux.core.theme.RealEstateTheme
 import dev.martincaux.core.theme.spacing
 import dev.martincaux.core.utils.anyNotNull
 import dev.martincaux.property.common.R
+import dev.martincaux.property.common.uimodel.PropertyDetailUi
 import dev.martincaux.property.common.uimodel.PropertyItemUi
 import dev.martincaux.core.values.R as CoreValuesR
 
 @Composable
-fun PropertyCard(property: PropertyItemUi) {
+fun PropertyCard(property: PropertyDetailUi) {
     Column(
         modifier = Modifier.verticalScroll(rememberScrollState())
     ) {
@@ -119,7 +120,7 @@ fun PropertyCard(property: PropertyItemUi) {
 fun DetailItemCardPreview() {
     RealEstateTheme {
         PropertyCard(
-            property = PropertyItemUi(
+            property = PropertyDetailUi(
                 bedrooms = 3,
                 city = "Paris",
                 id = 1,
