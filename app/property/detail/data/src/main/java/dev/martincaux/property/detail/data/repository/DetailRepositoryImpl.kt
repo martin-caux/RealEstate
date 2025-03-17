@@ -15,8 +15,9 @@ class DetailRepositoryImpl(
     override suspend fun getDetail(itemId: Int): Result<DetailDomain> {
         log.d { "Fetching detail" }
         return kotlin.runCatching {
-            detailApi.getDetailResponse(itemId).let(mapper::map)
-                ?: throw Exception("Error fetching detail")
+//            detailApi.getDetailResponse(itemId).let(mapper::map)
+//                ?: throw Exception("Error fetching detail")
+            throw Exception("Error fetching detail")
         }
     }
 }
