@@ -63,14 +63,11 @@ class ListViewModel(logger: Logger, private val getList: GetListUseCase) : ViewM
         getList().onSuccess { list ->
             delay(1000)
             _viewState.value =
-                if (list.properties.isEmpty()) ListViewState.Empty else ListViewState.Success(list)
+                if (list.properties.isEmpty()) ListViewState.Empty else ListViewState.Success(list.toUi())
         }.onFailure { exception ->
             _viewState.value = ListViewState.Error("$exception")
             log.d { "$exception" }
         }
     }
-
-    fun propertyListToUi(listDomain: ListDomain, context: Context): PropertyListUi =
-        listDomain.toUi(context)
 }
 

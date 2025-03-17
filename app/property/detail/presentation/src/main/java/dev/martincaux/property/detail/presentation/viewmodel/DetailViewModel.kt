@@ -43,14 +43,11 @@ class DetailViewModel(
     private suspend fun fetchDetail() {
         getDetail(itemId = itemId).onSuccess { detail ->
             delay(1000)
-            _viewState.value = DetailViewState.Success(detail)
+            _viewState.value = DetailViewState.Success(detail.toUi())
         }.onFailure { exception ->
             _viewState.value = DetailViewState.Error("$exception")
             log.d { "$exception" }
         }
     }
-
-    fun propertyDetailToUi(detailDomain: DetailDomain, context: Context): PropertyItemUi =
-        detailDomain.toUi(context)
 }
 

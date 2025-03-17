@@ -152,7 +152,7 @@ fun ListingItemCardPreview() {
         city = "Paris",
         id = 1,
         area = 100.00,
-        formattedArea = formatArea(100.00, logger = Logger, LocalContext.current),
+        formattedArea = formatArea(100.00, logger = Logger),
         imageUrl = "https://i.pinimg.com/originals/70/0a/5a/700a5a78999941b8081a231144309350.jpg",
         price = 500000.00,
         formattedPrice = formatPrice(500000.00, logger = Logger),

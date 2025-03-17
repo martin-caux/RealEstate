@@ -10,9 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import dev.martincaux.core.components.ErrorScreen
 import dev.martincaux.core.components.TopNavigationBar
@@ -57,9 +55,8 @@ fun ListScreen(modifier: Modifier, viewModel: ListViewModel, onItemClick: (Strin
                     }
                 ) {
                     List(
-                        propertyList = viewModel.propertyListToUi(
-                            listDomain = propertyList, context = LocalContext.current
-                        ), onItemClick = { itemId ->
+                        propertyList = propertyList,
+                        onItemClick = { itemId ->
                             viewModel.onIntent(ListIntent.OnListClicked(itemId))
                         }
                     )
