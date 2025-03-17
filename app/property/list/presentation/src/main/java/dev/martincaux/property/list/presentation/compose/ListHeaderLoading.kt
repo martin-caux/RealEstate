@@ -19,8 +19,8 @@ fun ListHeaderLoading(modifier: Modifier = Modifier) {
     Spacer(
         modifier = modifier
             .fillMaxWidth(0.4f)
-            .padding(horizontal = spacing.large)
-            .height(16.dp)
+            .padding(horizontal = spacing.large, vertical = spacing.medium)
+            .height(20.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(shimmerBrush())
     )

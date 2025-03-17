@@ -50,7 +50,7 @@ fun PropertyItemCard(property: PropertyItemUi, onClick: () -> Unit = {}) {
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
-        Column(modifier = Modifier.padding(spacing.large)) {
+        Column {
             AsyncImage(
                 model = property.imageUrl,
                 contentDescription = stringResource(CoreValuesR.string.image_description),
@@ -61,81 +61,85 @@ fun PropertyItemCard(property: PropertyItemUi, onClick: () -> Unit = {}) {
                 placeholder = painterResource(id = R.drawable.property_background_placeholder),
                 error = painterResource(id = R.drawable.property_background_placeholder)
             )
-            Spacer(modifier = Modifier.height(spacing.medium))
-            anyNotNull(property.bedrooms, property.rooms) { bedrooms, rooms ->
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    bedrooms?.let { bedroomsValue ->
-                        Image(
-                            painter = painterResource(id = R.drawable.baseline_bed_24),
-                            contentDescription = stringResource(CoreValuesR.string.bedrooms_description),
-                            modifier = Modifier.size(24.dp)
-                        )
-                        Spacer(modifier = Modifier.width(spacing.small))
-                        Text(
-                            text = stringResource(CoreValuesR.string.bedrooms_value, bedroomsValue),
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onTertiaryContainer
-                        )
-                        property.rooms?.let { Spacer(modifier = Modifier.width(16.dp)) }
-                    }
-                    rooms?.let { roomsValue ->
-                        Image(
-                            painter = painterResource(id = R.drawable.baseline_room_24),
-                            contentDescription = stringResource(CoreValuesR.string.rooms_description),
-                            modifier = Modifier.size(24.dp)
-                        )
-                        Spacer(modifier = Modifier.width(spacing.small))
-                        Text(
-                            text = stringResource(CoreValuesR.string.rooms_value, roomsValue),
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onTertiaryContainer
-                        )
-                    }
+            Column(modifier = Modifier.padding(spacing.large)) {
 
+                anyNotNull(property.bedrooms, property.rooms) { bedrooms, rooms ->
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        bedrooms?.let { bedroomsValue ->
+                            Image(
+                                painter = painterResource(id = R.drawable.baseline_bed_24),
+                                contentDescription = stringResource(CoreValuesR.string.bedrooms_description),
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(spacing.small))
+                            Text(
+                                text = stringResource(
+                                    CoreValuesR.string.bedrooms_value, bedroomsValue
+                                ),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onTertiaryContainer
+                            )
+                            property.rooms?.let { Spacer(modifier = Modifier.width(16.dp)) }
+                        }
+                        rooms?.let { roomsValue ->
+                            Image(
+                                painter = painterResource(id = R.drawable.baseline_room_24),
+                                contentDescription = stringResource(CoreValuesR.string.rooms_description),
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(spacing.small))
+                            Text(
+                                text = stringResource(CoreValuesR.string.rooms_value, roomsValue),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onTertiaryContainer
+                            )
+                        }
+
+                    }
                 }
-            }
-            Spacer(modifier = Modifier.height(spacing.medium))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Image(
-                    painter = painterResource(id = R.drawable.baseline_area_24),
-                    contentDescription = stringResource(CoreValuesR.string.area_description),
-                    modifier = Modifier.size(24.dp)
-                )
-                Spacer(modifier = Modifier.width(spacing.small))
+                Spacer(modifier = Modifier.height(spacing.medium))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Image(
+                        painter = painterResource(id = R.drawable.baseline_area_24),
+                        contentDescription = stringResource(CoreValuesR.string.area_description),
+                        modifier = Modifier.size(24.dp)
+                    )
+                    Spacer(modifier = Modifier.width(spacing.small))
+                    Text(
+                        text = property.formattedArea,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onTertiaryContainer
+                    )
+                }
+                Spacer(modifier = Modifier.height(spacing.medium))
                 Text(
-                    text = property.formattedArea,
-                    style = MaterialTheme.typography.bodyMedium,
+                    text = property.city,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onTertiaryContainer
                 )
+                Spacer(modifier = Modifier.height(spacing.small))
+                Text(
+                    text = property.formattedPrice,
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.End,
+                    modifier = Modifier.fillMaxWidth(),
+                    color = MaterialTheme.colorScheme.onTertiaryContainer
+                )
+                Spacer(modifier = Modifier.height(spacing.small))
+                Text(
+                    text = property.propertyType,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.tertiary
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = property.professional,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.tertiary
+                )
             }
-            Spacer(modifier = Modifier.height(spacing.medium))
-            Text(
-                text = property.city,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onTertiaryContainer
-            )
-            Spacer(modifier = Modifier.height(spacing.small))
-            Text(
-                text = property.formattedPrice,
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.End,
-                modifier = Modifier.fillMaxWidth(),
-                color = MaterialTheme.colorScheme.onTertiaryContainer
-            )
-            Spacer(modifier = Modifier.height(spacing.small))
-            Text(
-                text = property.propertyType,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.tertiary
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = property.professional,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.tertiary
-            )
         }
     }
 }

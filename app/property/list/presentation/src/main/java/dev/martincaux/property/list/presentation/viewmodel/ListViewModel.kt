@@ -29,14 +29,7 @@ class ListViewModel(logger: Logger, private val getList: GetListUseCase) : ViewM
     init {
         viewModelScope.launch {
             _viewState.value = ListViewState.Loading
-            delay(1000)
-            getList().onSuccess { list ->
-                _viewState.value = if(list.properties.isEmpty()) ListViewState.Empty else ListViewState.Success(list)
-//                _viewState.value = ListViewState.Empty
-            }.onFailure { exception ->
-                _viewState.value = ListViewState.Error("$exception")
-                log.d { "$exception" }
-            }
+            fetchList()
         }
     }
 
@@ -48,6 +41,32 @@ class ListViewModel(logger: Logger, private val getList: GetListUseCase) : ViewM
                     _navigationEvent.emit(Route.RealEstateDetail.createRoute(intent.listId))
                 }
             }
+
+            ListIntent.OnListRefresh -> {
+                viewModelScope.launch {
+                    _viewState.value =
+                        (_viewState.value as ListViewState.Success).copy(isRefreshing = true)
+                    fetchList()
+                }
+            }
+
+            ListIntent.OnListRetry -> {
+                viewModelScope.launch {
+                    _viewState.value = ListViewState.Loading
+                    fetchList()
+                }
+            }
+        }
+    }
+
+    private suspend fun fetchList() {
+        getList().onSuccess { list ->
+            delay(1000)
+            _viewState.value =
+                if (list.properties.isEmpty()) ListViewState.Empty else ListViewState.Success(list)
+        }.onFailure { exception ->
+            _viewState.value = ListViewState.Error("$exception")
+            log.d { "$exception" }
         }
     }
 
