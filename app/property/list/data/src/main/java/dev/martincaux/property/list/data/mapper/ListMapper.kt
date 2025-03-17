@@ -6,7 +6,7 @@ import dev.martincaux.property.list.domain.model.PropertyItemDomain
 
 class ListMapper {
 
-    fun map(response: ListResponse): ListDomain? {
+    fun map(response: ListResponse): ListDomain {
         val propertyList = response.itemsList?.mapNotNull {
             PropertyItemDomain(
                 city = it.city ?: return@mapNotNull null,
@@ -22,10 +22,8 @@ class ListMapper {
             )
         } ?: emptyList()
 
-        return if (propertyList.isNotEmpty()) {
-            ListDomain(
-                properties = propertyList, propertyCount = response.totalCount ?: propertyList.size
-            )
-        } else null
+        return ListDomain(
+            properties = propertyList, propertyCount = response.totalCount ?: propertyList.size
+        )
     }
 }

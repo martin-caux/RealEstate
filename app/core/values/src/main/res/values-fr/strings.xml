@@ -9,4 +9,9 @@
     <string name="back_description">Retour</string>
     <string name="image_description">Image de la propriété</string>
     <string name="area_description">Surface</string>
+    <string name="error_screen_title">Oups! Une errreur est survenue</string>
+    <string name="empty_list_title">Aucun Résultat</string>
+    <string name="no_results_description">Aucun Résultat</string>
+    <string name="error_description">Erreur</string>
+    <string name="error_button_text">Réessayer</string>
 </resources>

@@ -80,10 +80,7 @@ val DarkColorScheme = darkColorScheme(
     scrim = Gray10
 )
 
-typealias Theme = MaterialTheme
-
 val LocalSpacing = compositionLocalOf { Spacing() }
-
 val spacing: Spacing
     @Composable @ReadOnlyComposable get() = LocalSpacing.current
 

@@ -9,4 +9,9 @@
     <string name="area_description">Area</string>
     <string name="back_description">Back</string>
     <string name="list_screen_title">Properties</string>
+    <string name="error_screen_title">Oops! Something went wrong.</string>
+    <string name="empty_list_title">No Results Found</string>
+    <string name="no_results_description">No Results</string>
+    <string name="error_description">Error</string>
+    <string name="error_button_text">Try Again</string>
 </resources>

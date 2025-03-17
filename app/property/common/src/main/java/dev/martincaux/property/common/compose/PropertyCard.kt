@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,18 +27,16 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import dev.martincaux.core.theme.RealEstateTheme
-import dev.martincaux.core.theme.Theme
 import dev.martincaux.core.theme.spacing
 import dev.martincaux.core.utils.anyNotNull
 import dev.martincaux.property.common.R
-import dev.martincaux.core.values.R as CoreValuesR
 import dev.martincaux.property.common.uimodel.PropertyItemUi
+import dev.martincaux.core.values.R as CoreValuesR
 
 @Composable
 fun PropertyCard(property: PropertyItemUi) {
     Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
+        modifier = Modifier.verticalScroll(rememberScrollState())
     ) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current).data(property.imageUrl)
@@ -53,13 +52,13 @@ fun PropertyCard(property: PropertyItemUi) {
         Column(modifier = Modifier.padding(spacing.large)) {
             Text(
                 text = property.city,
-                style = Theme.typography.headlineMedium,
+                style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.height(spacing.medium))
             Text(
                 text = property.formattedPrice,
-                style = Theme.typography.headlineSmall,
+                style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.height(spacing.medium))
@@ -73,7 +72,11 @@ fun PropertyCard(property: PropertyItemUi) {
                             modifier = Modifier.size(24.dp)
                         )
                         Spacer(modifier = Modifier.width(spacing.small))
-                        Text(text = stringResource(CoreValuesR.string.bedrooms_value, bedroomsValue))
+                        Text(
+                            text = stringResource(
+                                CoreValuesR.string.bedrooms_value, bedroomsValue
+                            )
+                        )
                         property.rooms?.let {
                             Spacer(modifier = Modifier.width(spacing.large))
                         }
@@ -101,11 +104,11 @@ fun PropertyCard(property: PropertyItemUi) {
             }
             Spacer(modifier = Modifier.height(spacing.medium))
             Text(
-                text = property.professional, style = Theme.typography.bodyMedium
+                text = property.professional, style = MaterialTheme.typography.bodyMedium
             )
             Spacer(modifier = Modifier.height(spacing.medium))
             Text(
-                text = property.propertyType, style = Theme.typography.bodyMedium
+                text = property.propertyType, style = MaterialTheme.typography.bodyMedium
             )
         }
     }

@@ -7,6 +7,7 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -17,7 +18,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import dev.martincaux.core.theme.RealEstateTheme
-import dev.martincaux.core.theme.Theme
 import dev.martincaux.core.values.R as CoreValuesR
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,7 +33,7 @@ fun TopNavigationBar(
             title?.let { titleValue ->
                 Text(
                     text = titleValue,
-                    style = Theme.typography.titleLarge,
+                    style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -42,24 +42,25 @@ fun TopNavigationBar(
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = stringResource(CoreValuesR.string.back_description),
-                    tint = if (isTransparent) Theme.colorScheme.onSurface else Theme.colorScheme.onBackground
+                    tint = if (isTransparent) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onBackground
                 )
             }
         }, colors = if (isTransparent) TopAppBarDefaults.topAppBarColors(
             containerColor = Color.Transparent,
-            navigationIconContentColor = Theme.colorScheme.onSurface
+            navigationIconContentColor = MaterialTheme.colorScheme.onSurface
         ) else TopAppBarDefaults.topAppBarColors()
         )
     } ?: run {
-        CenterAlignedTopAppBar(modifier = modifier.background(Theme.colorScheme.primary), title = {
-            title?.let { titleValue ->
-                Text(
-                    text = titleValue,
-                    style = Theme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-        })
+        CenterAlignedTopAppBar(modifier = modifier.background(MaterialTheme.colorScheme.primary),
+            title = {
+                title?.let { titleValue ->
+                    Text(
+                        text = titleValue,
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            })
     }
 
 }

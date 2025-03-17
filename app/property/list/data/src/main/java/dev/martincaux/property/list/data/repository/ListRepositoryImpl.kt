@@ -15,7 +15,8 @@ class ListRepositoryImpl(
     override suspend fun getList(): Result<ListDomain> {
         log.d { "Fetching list" }
         return kotlin.runCatching {
-            listApi.getListResponse().let(mapper::map) ?: throw Exception("Error fetching list")
+            listApi.getListResponse().let(mapper::map)
+//            throw Exception("Error fetching list")
         }
     }
 }

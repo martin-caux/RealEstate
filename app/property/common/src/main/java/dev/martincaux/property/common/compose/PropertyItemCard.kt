@@ -28,7 +28,6 @@ import androidx.compose.ui.unit.dp
 import co.touchlab.kermit.Logger
 import coil.compose.AsyncImage
 import dev.martincaux.core.theme.RealEstateTheme
-import dev.martincaux.core.theme.Theme
 import dev.martincaux.core.theme.spacing
 import dev.martincaux.core.utils.anyNotNull
 import dev.martincaux.core.utils.formatArea
@@ -43,14 +42,13 @@ fun PropertyItemCard(property: PropertyItemUi, onClick: () -> Unit = {}) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                horizontal = spacing.large,
-                vertical = spacing.medium
+                horizontal = spacing.large, vertical = spacing.medium
             )
             .clickable {
                 onClick()
             },
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        colors = CardDefaults.cardColors(containerColor = Theme.colorScheme.tertiaryContainer)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer)
     ) {
         Column(modifier = Modifier.padding(spacing.large)) {
             AsyncImage(
@@ -75,8 +73,8 @@ fun PropertyItemCard(property: PropertyItemUi, onClick: () -> Unit = {}) {
                         Spacer(modifier = Modifier.width(spacing.small))
                         Text(
                             text = stringResource(CoreValuesR.string.bedrooms_value, bedroomsValue),
-                            style = Theme.typography.bodyMedium,
-                            color = Theme.colorScheme.onTertiaryContainer
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onTertiaryContainer
                         )
                         property.rooms?.let { Spacer(modifier = Modifier.width(16.dp)) }
                     }
@@ -89,8 +87,8 @@ fun PropertyItemCard(property: PropertyItemUi, onClick: () -> Unit = {}) {
                         Spacer(modifier = Modifier.width(spacing.small))
                         Text(
                             text = stringResource(CoreValuesR.string.rooms_value, roomsValue),
-                            style = Theme.typography.bodyMedium,
-                            color = Theme.colorScheme.onTertiaryContainer
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onTertiaryContainer
                         )
                     }
 
@@ -106,37 +104,37 @@ fun PropertyItemCard(property: PropertyItemUi, onClick: () -> Unit = {}) {
                 Spacer(modifier = Modifier.width(spacing.small))
                 Text(
                     text = property.formattedArea,
-                    style = Theme.typography.bodyMedium,
-                    color = Theme.colorScheme.onTertiaryContainer
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onTertiaryContainer
                 )
             }
             Spacer(modifier = Modifier.height(spacing.medium))
             Text(
                 text = property.city,
-                style = Theme.typography.titleMedium,
+                style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
-                color = Theme.colorScheme.onTertiaryContainer
+                color = MaterialTheme.colorScheme.onTertiaryContainer
             )
             Spacer(modifier = Modifier.height(spacing.small))
             Text(
                 text = property.formattedPrice,
-                style = Theme.typography.titleLarge,
+                style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.End,
                 modifier = Modifier.fillMaxWidth(),
-                color = Theme.colorScheme.onTertiaryContainer
+                color = MaterialTheme.colorScheme.onTertiaryContainer
             )
             Spacer(modifier = Modifier.height(spacing.small))
             Text(
                 text = property.propertyType,
-                style = Theme.typography.bodySmall,
-                color = Theme.colorScheme.tertiary
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.tertiary
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = property.professional,
-                style = Theme.typography.bodySmall,
-                color = Theme.colorScheme.tertiary
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.tertiary
             )
         }
     }

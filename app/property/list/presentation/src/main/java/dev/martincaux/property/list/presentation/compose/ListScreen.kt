@@ -3,7 +3,6 @@ package dev.martincaux.property.list.presentation.compose
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -11,8 +10,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
+import dev.martincaux.core.components.ErrorScreen
 import dev.martincaux.core.components.TopNavigationBar
+import dev.martincaux.property.common.compose.EmptyScreen
 import dev.martincaux.property.list.presentation.viewmodel.ListIntent
 import dev.martincaux.property.list.presentation.viewmodel.ListViewModel
 import dev.martincaux.property.list.presentation.viewmodel.ListViewState
@@ -47,14 +47,20 @@ fun ListScreen(modifier: Modifier, viewModel: ListViewModel, onItemClick: (Strin
                 )
             }
 
+            ListViewState.Empty -> {
+                EmptyScreen()
+            }
+
             is ListViewState.Error -> {
                 val errorMessage = (viewState as ListViewState.Error).message
-                // Display the error message here
-                Text(text = errorMessage, modifier = Modifier.padding(16.dp))
+                ErrorScreen(message = errorMessage) { }
             }
+
         }
     }
 }
+
+
 
 
 

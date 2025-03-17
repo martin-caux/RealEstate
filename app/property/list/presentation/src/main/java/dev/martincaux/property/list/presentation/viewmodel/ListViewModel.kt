@@ -30,11 +30,12 @@ class ListViewModel(logger: Logger, private val getList: GetListUseCase) : ViewM
         viewModelScope.launch {
             _viewState.value = ListViewState.Loading
             delay(1000)
-            getList().onSuccess { properties ->
-                _viewState.value = ListViewState.Success(properties)
+            getList().onSuccess { list ->
+                _viewState.value = if(list.properties.isEmpty()) ListViewState.Empty else ListViewState.Success(list)
+//                _viewState.value = ListViewState.Empty
             }.onFailure { exception ->
-                _viewState.value = ListViewState.Error("Failure fetching list")
-                log.d { "Failure fetching list : $exception" }
+                _viewState.value = ListViewState.Error("$exception")
+                log.d { "$exception" }
             }
         }
     }
