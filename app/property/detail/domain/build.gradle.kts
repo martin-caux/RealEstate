@@ -17,4 +17,5 @@ kotlin {
 dependencies {
     implementation(libs.kermit)
     implementation(libs.koin.core)
+    implementation(libs.kermit.core)
 }

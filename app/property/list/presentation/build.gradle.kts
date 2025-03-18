@@ -42,39 +42,37 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(project(":app:core:utils"))
-    implementation(project(":app:core:theme"))
-    testImplementation(libs.junit)
+    androidTestImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.material)
+    implementation(libs.androidx.foundation.layout)
+    implementation(libs.androidx.ui.text)
+    implementation(libs.androidx.ui.unit)
+    api(libs.androidx.foundation)
+    api(libs.androidx.runtime)
 
-    implementation(libs.kotlinx.serialization.json)
+    api(libs.lifecycle.viewmodel)
 
-    implementation(libs.koin.android)
+    api(libs.kotlinx.coroutines.core)
 
     implementation(libs.kermit)
 
-    implementation(libs.coil.compose)
+    implementation(libs.koin.core.viewmodel)
+    api(libs.koin.core)
 
     debugImplementation(libs.ui.tooling)
 
-    implementation(project(":app:property:list:domain"))
-    implementation(project(":app:property:common"))
-    implementation(project(":app:core:navigation"))
     implementation(project(":app:core:components"))
+    implementation(project(":app:core:navigation"))
+    implementation(project(":app:core:theme"))
+    implementation(project(":app:core:utils"))
     implementation(project(":app:core:values"))
+    api(project(":app:property:common"))
+    api(project(":app:property:list:domain"))
 }

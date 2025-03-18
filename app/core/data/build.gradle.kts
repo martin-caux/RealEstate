@@ -35,20 +35,14 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-    implementation(libs.koin.android)
-
     implementation(libs.moshi)
     implementation(libs.moshi.kotlin)
-    implementation(libs.converter.moshi)
+    api(libs.converter.moshi)
+
+    api(libs.koin.core)
+
+    implementation(libs.okhttp)
 
     implementation(libs.logging.interceptor)
-    implementation(libs.kermit)
-    implementation(libs.retrofit)
+    api(libs.retrofit)
 }

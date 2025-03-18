@@ -42,19 +42,22 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    implementation(libs.androidx.foundation)
+    implementation(libs.androidx.ui.geometry)
+    implementation(libs.androidx.ui.text)
+    implementation(libs.androidx.ui.unit)
     implementation(libs.androidx.material3.android)
     implementation(libs.androidx.ui.tooling.preview.android)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-    implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.material.icons.core.android)
+    api(libs.androidx.foundation.layout)
+    api(libs.androidx.runtime)
+    api(libs.androidx.ui)
+    api(libs.androidx.ui.graphics)
+
+    implementation(libs.animation.core)
+
+    debugImplementation(libs.ui.tooling)
 
     implementation(project(":app:core:theme"))
     implementation(project(":app:core:values"))
-    debugImplementation(libs.ui.tooling)
 }

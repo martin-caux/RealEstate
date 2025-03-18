@@ -42,35 +42,26 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(project(":app:core:theme"))
-    testImplementation(libs.junit)
+    androidTestImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.foundation.layout)
+    api(libs.androidx.runtime)
 
-    implementation(libs.kotlinx.serialization.json)
-
-    implementation(libs.koin.android)
+    api(libs.kotlinx.coroutines.core)
 
     implementation(libs.kermit)
 
-    implementation(libs.coil.compose)
+    api(libs.lifecycle.viewmodel)
 
-    implementation(project(":app:property:detail:domain"))
-    implementation(project(":app:property:common"))
-    implementation(project(":app:core:navigation"))
-    implementation(project(":app:core:utils"))
+    implementation(libs.koin.core.viewmodel)
+    api(libs.koin.core)
+
     implementation(project(":app:core:components"))
-    implementation(project(":app:core:values"))
+    implementation(project(":app:core:utils"))
+    api(project(":app:property:common"))
+    api(project(":app:property:detail:domain"))
 }

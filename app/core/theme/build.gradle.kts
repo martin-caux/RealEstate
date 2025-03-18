@@ -42,12 +42,12 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    implementation(libs.androidx.foundation)
+    implementation(libs.androidx.ui.text)
+    implementation(libs.androidx.ui.unit)
+    implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics.android)
-    implementation(libs.androidx.material3.android)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    api(libs.androidx.material3.android)
+    api(libs.androidx.material3.android)
+    api(libs.androidx.runtime)
 }

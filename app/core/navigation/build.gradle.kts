@@ -15,5 +15,5 @@ kotlin {
 }
 
 dependencies {
-    implementation(libs.kotlinx.serialization.json)
+    api(libs.kotlinx.serialization.core)
 }

@@ -48,26 +48,31 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.animation)
+    implementation(libs.androidx.runtime)
     implementation(libs.androidx.navigation.compose)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.navigation.common)
     androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugRuntimeOnly(libs.androidx.ui.test.manifest)
 
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.viewmodel)
+
+    implementation(libs.navigation.runtime)
+
     implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+    implementation(libs.koin.core)
+    implementation(libs.koin.core.viewmodel)
     implementation(libs.koin.androidx.compose)
 
-    implementation(project(":app:core:navigation"))
     implementation(project(":app:core:data"))
+    implementation(project(":app:core:navigation"))
     implementation(project(":app:core:theme"))
     implementation(project(":app:property:list:data"))
     implementation(project(":app:property:list:domain"))
