@@ -1,18 +1,14 @@
 package dev.martincaux.property.detail.presentation
 
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import dev.martincaux.property.common.uimodel.PropertyDetailUi
-import dev.martincaux.property.common.uimodel.PropertyItemUi
 import dev.martincaux.property.detail.domain.model.DetailDomain
 import dev.martincaux.property.detail.presentation.mapper.toUi
 import org.junit.After
-
+import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
-import org.junit.Before
 import java.util.Locale
 
 /**
@@ -71,7 +67,7 @@ class DetailPresentationInstrumentedTest {
     fun detailDomainToUiWithUKLocale() {
         Locale.setDefault(Locale.UK)
         // Arrange
-        val listDomain =DetailDomain(
+        val listDomain = DetailDomain(
             id = 1,
             city = "Paris",
             area = 100.0,
@@ -109,7 +105,7 @@ class DetailPresentationInstrumentedTest {
     fun detailDomainToUiWithUSLocale() {
         Locale.setDefault(Locale.US)
         // Arrange
-        val listDomain =DetailDomain(
+        val listDomain = DetailDomain(
             id = 1,
             city = "Paris",
             area = 100.0,

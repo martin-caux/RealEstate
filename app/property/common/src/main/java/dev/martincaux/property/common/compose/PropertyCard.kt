@@ -31,7 +31,6 @@ import dev.martincaux.core.theme.spacing
 import dev.martincaux.core.utils.anyNotNull
 import dev.martincaux.property.common.R
 import dev.martincaux.property.common.uimodel.PropertyDetailUi
-import dev.martincaux.property.common.uimodel.PropertyItemUi
 import dev.martincaux.core.values.R as CoreValuesR
 
 @Composable

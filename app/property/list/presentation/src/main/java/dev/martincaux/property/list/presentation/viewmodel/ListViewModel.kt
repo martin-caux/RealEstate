@@ -1,14 +1,11 @@
 package dev.martincaux.property.list.presentation.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import co.touchlab.kermit.Logger
 import dev.martincaux.core.navigation.Route
-import dev.martincaux.property.list.domain.model.ListDomain
 import dev.martincaux.property.list.domain.usecase.GetListUseCase
 import dev.martincaux.property.list.presentation.mapper.toUi
-import dev.martincaux.property.list.presentation.uimodel.PropertyListUi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
