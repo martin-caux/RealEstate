@@ -48,6 +48,7 @@ dependencies {
     implementation(project(":app:core:utils"))
     implementation(project(":app:core:theme"))
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 

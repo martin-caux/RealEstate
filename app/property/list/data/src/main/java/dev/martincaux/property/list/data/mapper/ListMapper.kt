@@ -23,7 +23,8 @@ class ListMapper {
         } ?: emptyList()
 
         return ListDomain(
-            properties = propertyList, propertyCount = response.totalCount ?: propertyList.size
+            properties = propertyList,
+            propertyCount = if(response.totalCount == propertyList.size) response.totalCount else propertyList.size
         )
     }
 }

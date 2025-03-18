@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="11">
+      <module name="Real_Estate.app.core.storage" target="21" />
       <module name="Real_Estate.app.listing.detail.data" target="21" />
       <module name="Real_Estate.app.listing.detail.presentation" target="21" />
       <module name="Real_Estate.app.listing.list.data" target="21" />

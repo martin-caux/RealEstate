@@ -8,7 +8,16 @@
       <SelectionState runConfigName="app.core">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="TransparentTopTransparentNoTitlePreview">
+      <SelectionState runConfigName="ExampleInstrumentedTest">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="listDomainToUi()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="ExampleInstrumentedTest (1)">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="listDomainToUiWithUSLocale()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

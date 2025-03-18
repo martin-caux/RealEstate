@@ -1,6 +1,6 @@
 package dev.martincaux.property.list.data.di
 
-import dev.martincaux.property.list.data.api.ListApi
+import dev.martincaux.property.list.data.datasource.ListRemoteDataSource
 import dev.martincaux.property.list.data.mapper.ListMapper
 import dev.martincaux.property.list.data.repository.ListRepositoryImpl
 import dev.martincaux.property.list.domain.repository.ListRepository
@@ -11,8 +11,8 @@ import retrofit2.Retrofit
 
 val listDataModule = module {
 
-    single<ListApi> {
-        get<Retrofit>().create(ListApi::class.java)
+    single<ListRemoteDataSource> {
+        get<Retrofit>().create(ListRemoteDataSource::class.java)
     }
 
     singleOf(::ListMapper)
